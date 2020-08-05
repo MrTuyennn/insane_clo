@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "969039845929",
+    "firebase_url": "https://insaneclo.firebaseio.com",
+    "project_id": "insaneclo",
+    "storage_bucket": "insaneclo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:969039845929:android:dbb247cecd43a5fa625a38",
+        "android_client_info": {
+          "package_name": "com.insane"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "969039845929-g8btei5n98lf2sajh5dhe4ftoj27naml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBf0x4SfsXzC8ER0BFSUKflesh1h1X_lRk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "969039845929-g8btei5n98lf2sajh5dhe4ftoj27naml.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
