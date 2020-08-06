@@ -21,7 +21,7 @@ const profile = ({navigation}) => {
                 console.log(idUser);
             }
             await fetch(
-                'http://172.18.65.30:3000/getdata-user/' + idUser)
+                'http://10.82.64.103:3000/getdata-user/' + idUser)
                 .then((response) => response.json())
                 .then((user) => {
                     const { api_code, data } = user;

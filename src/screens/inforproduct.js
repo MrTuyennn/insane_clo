@@ -18,7 +18,7 @@ const inforproduct = (props, {navigation}) => {
   console.log('đây là picture' + ' ' + picture);
 
   const deleteProduc = () => {
-    fetch('http://172.18.65.30:3000/delete-data/'+ _id, {
+    fetch('http://10.82.64.103:3000/delete-data/'+ _id, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

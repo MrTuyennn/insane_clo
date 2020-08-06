@@ -77,7 +77,7 @@ const addstore = ({ navigation }) => {
 
   const Add_store = (dataImage) => {
     console.log(dataImage + " " + "đây là dataImage")
-    fetch('http://172.18.65.30:3000/creat-data', {
+    fetch('http://10.82.64.103:3000/creat-data', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

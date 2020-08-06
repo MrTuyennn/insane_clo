@@ -31,7 +31,7 @@ const updateprofile = ({route,navigation}) => {
     console.log(_id,avatar,name,phone,gmail + " " + "thông tin người dùng")
 
     const updateUser = async () =>{
-      const res = await fetch('http://172.18.65.30:3000/update_user/' + _id,{
+      const res = await fetch('http://10.82.64.103:3000/update_user/' + _id,{
         method: 'POST',
         headers: {
           Accept : 'application/json',

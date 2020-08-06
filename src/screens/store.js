@@ -16,14 +16,14 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import theme from '../utils/theme';
 import {Card, FAB} from 'react-native-paper';
 
-const numColumns = 2;
-
+// const numColumns = 2;
+const W = Dimensions.get('window').width
 const Store = ({navigation}) => {
   const [dataProduct, setdataProduct] = useState([]);
   const [loading, setloading] = useState(true);
 
   const getData = () => {
-    fetch('http://172.18.65.30:3000/product-limit')
+    fetch('http://10.82.64.103:3000/product-limit')
       .then((response) => response.json())
       .then((result) => {
         console.log(result + ' ' + 'có dữ liệu');
@@ -36,12 +36,20 @@ const Store = ({navigation}) => {
     getData();
   }, []);
 
+  // const onScroll = ({
+  //   nativeEvent:{
+  //     contentOffset:{x},
+  //   },
+  // }) => {
+  //      console.log(x)
+  // }
+
   const _renderItem = (item) => {
     let {styCard, styImage, styprice} = styles;
     return (
       <TouchableWithoutFeedback onPress={() =>navigation.navigate('inforproduct',{item})}>
       <Card style={styles.styCard}>
-        <Image style={styles.styImage} source={{uri: item.picture}}></Image>
+        <Image resizeMode='cover' style={styles.styImage} source={{uri: item.picture}}></Image>
         <Text>{item.name}</Text>
         <Text style={styles.styprice}>{item.price}</Text>
         <Text></Text>
@@ -102,11 +110,18 @@ const Store = ({navigation}) => {
        
             {<FlatList
               data={dataProduct}
+              horizontal={true}
+              snapToAlignment='center'
+              decelerationRate={'fast'}
+              contentContainerStyle={{marginHorizontal:5}}
+              pagingEnabled
+              snapToInterval ={W - 45}
+              showsHorizontalScrollIndicator={false}
+              // onScroll={onScroll()}
               renderItem={({item}) => {
                 return _renderItem(item);
               }}
               keyExtractor={(item) => item._id}
-              numColumns={numColumns}
               onRefresh={() => getData()}
               refreshing={loading}></FlatList>}
              <ScrollView></ScrollView>
@@ -195,11 +210,14 @@ const styles = StyleSheet.create({
     elevation: 5,
     margin: 10,
     borderRadius: 10,
+    width:W - 120,
   },
   styImage: {
     height: 150,
+    width:'100%',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
+    justifyContent: 'center',
   },
   styprice: {
     color: 'red',

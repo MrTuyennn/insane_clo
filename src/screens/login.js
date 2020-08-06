@@ -31,7 +31,7 @@ const login = ({navigation}) => {
 
   const loginUser = async () => {
     if (checkLogin(email, password)) {
-      const res = await fetch('http://172.18.65.30:3000/singin', {
+      const res = await fetch('http://10.82.64.103:3000/singin', {
         method: 'POST',
         headers: {
           Accept: 'application/json',

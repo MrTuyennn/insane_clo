@@ -8,7 +8,7 @@ const lisproduct = ({navigation}) => {
     
 
     const getData = () => {
-        fetch('http://172.18.65.30:3000/product-data')
+        fetch('http://10.82.64.103:3000/product-data')
           .then((response) => response.json())
           .then((result) => {
             console.log(result + ' ' + 'có dữ liệu');

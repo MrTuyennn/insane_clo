@@ -84,7 +84,7 @@ const register = ({ navigation }) => {
 
     const addUser = async (result) => {
          
-            const res = await fetch('http://172.18.65.30:3000/singup', {
+            const res = await fetch('http://10.82.64.103:3000/singup', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
