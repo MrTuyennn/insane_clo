@@ -38,7 +38,7 @@ const login = ({navigation}) => {
   const loginUser = async () => {
 
     if (checkLogin(email, password)) {
-      
+      setprogressSimple(true)
       const res = await fetch(`http://${PORT}/singin`, {
         method: 'POST',
         headers: {
@@ -52,17 +52,19 @@ const login = ({navigation}) => {
       });
 
       const resResult = await res.json();
+      
       console.log(resResult + ' kết quả sever trả về ');
       const {data, api_code} = resResult;
       if (api_code === 200) {
         ToastAndroid.show('Login Thành Công', ToastAndroid.SHORT);
-        setprogressSimple(true);
+        
         setloading(true)
-        toggleProgress()
+        // toggleProgress()
         await AsyncStorage.setItem('id_user',data._id)
-        navigation.navigate('homeNavigation')
+        navigation.replace('homeNavigation')
         console.log(data._id + "id user")
       } else {
+        setprogressSimple(false)
         ToastAndroid.show('Err : Email hoặc mật khẩu không chính xác', ToastAndroid.SHORT);
       }
     }

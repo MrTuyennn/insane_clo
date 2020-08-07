@@ -36,10 +36,23 @@ const profile = ({navigation}) => {
         }
     };
 
+    const remmoveValue = async () => {
+        try {
+            await AsyncStorage.removeItem('id_user')
+            await navigation.navigate('stacklogin')
+        } catch (error) {
+            console.log(error + 'có lỗi')
+        }
+    }
+
+   
+
+   
+
     const dialog = () => {
         Alert.alert(
           'Thông báo !!!',
-          'Bạn có muốn xóa sản phẩm',
+          'Bạn có muốn thoát tài khoản',
           [
             {
               text: 'Ask me later',
@@ -50,11 +63,12 @@ const profile = ({navigation}) => {
               onPress: () => console.log('Cancel Pressed'),
               style: 'cancel',
             },
-            {text: 'OK', onPress: () => ToastAndroid.show('oke',ToastAndroid.SHORT)},
+            {text: 'OK', onPress: () => remmoveValue()},
           ],
           {cancelable: false},
         );
       };
+      
 
     const _renderItem = ( item ) => {
       const {view,toolbar,title,header,viewimage,image,headerleft,touchableOpacity,body} = styles
