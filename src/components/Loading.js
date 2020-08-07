@@ -5,9 +5,9 @@ import Spinner from 'react-native-spinkit';
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 
-const Loading = (style) =>  {
+const Loading = ({flag}) =>  {
     return (
-      <View  style={[styles.container,style]}>
+      <View  style={flag ? styles.container : {display: 'none'}}>
         <View style={styles.overplay}></View>
         <Spinner isVisible={true}  size={50} type="Circle" color="white"></Spinner>
       </View>

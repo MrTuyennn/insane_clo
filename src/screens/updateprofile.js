@@ -3,6 +3,7 @@ import { StyleSheet, Text, View,Image,TouchableOpacity, ToastAndroid } from 'rea
 import {TextInput} from 'react-native-paper';
 import theme from '../utils/theme';
 import ButtonCustom from '../components/ButtonCustom'
+import PORT from '../utils/port'
 const updateprofile = ({route,navigation}) => {
 
     const {_id,name,phone,avatar,gmail} =route.params.item
@@ -31,7 +32,7 @@ const updateprofile = ({route,navigation}) => {
     console.log(_id,avatar,name,phone,gmail + " " + "thông tin người dùng")
 
     const updateUser = async () =>{
-      const res = await fetch('http://10.82.64.103:3000/update_user/' + _id,{
+      const res = await fetch(`http://${PORT}/update_user/` + _id,{
         method: 'POST',
         headers: {
           Accept : 'application/json',

@@ -6,7 +6,7 @@ import Email from 'react-native-vector-icons/MaterialCommunityIcons'
 import Log from 'react-native-vector-icons/AntDesign'
 import {Card} from 'react-native-paper'
 import theme from '../utils/theme'
-
+import PORT from '../utils/port'
 
 const profile = ({navigation}) => {
     const [id_user, setid_user] = useState('');
@@ -21,7 +21,7 @@ const profile = ({navigation}) => {
                 console.log(idUser);
             }
             await fetch(
-                'http://10.82.64.103:3000/getdata-user/' + idUser)
+                `http://${PORT}/getdata-user/` + idUser)
                 .then((response) => response.json())
                 .then((user) => {
                     const { api_code, data } = user;

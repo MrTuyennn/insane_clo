@@ -4,7 +4,7 @@ import ImagePicker from 'react-native-image-picker';
 import {TextInput} from 'react-native-paper';
 import theme from '../utils/theme';
 import ButtonCustom from '../components/ButtonCustom';
-
+import PORT from '../utils/port'
 const update = ({route, navigation}) => {
   const getDeltal = (type) => {
     if (route.params) {
@@ -34,7 +34,7 @@ const update = ({route, navigation}) => {
 
   const update_store = (dataImage) => {
     console.log(dataImage + ' ' + 'đây là dataImage');
-    fetch('http://10.82.64.103:3000/update-data/' + route.params._id, {
+    fetch(`http://${PORT}/update-data/` + route.params._id, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

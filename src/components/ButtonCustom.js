@@ -1,24 +1,23 @@
-import React from 'react'
-import { StyleSheet, Text, View,TouchableOpacity,Image } from 'react-native'
+import React from 'react';
+import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 
-const ButtonCustom = ({title,style,color,onPress,source}) => {
-    return (
-        <TouchableOpacity onPress={onPress}>
-        <View style={[styles.bg,style]}>
-            <Image source={source}></Image>
-            <Text style={color}>{title}</Text>
-        </View>
-        </TouchableOpacity>
-    )
-}
+const ButtonCustom = ({title, style, color, onPress, source}) => {
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <View style={[styles.bg, style]}>
+        <Image source={source}></Image>
+        <Text style={color}>{title}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
 
-export default ButtonCustom
+export default ButtonCustom;
 
 const styles = StyleSheet.create({
-    bg: {
-        backgroundColor: '#ff66a3',
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-})
-
+  bg: {
+    backgroundColor: '#ff66a3',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

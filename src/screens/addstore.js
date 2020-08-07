@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,34 +7,34 @@ import {
   TouchableOpacity,
   ScrollView,
   ToastAndroid,
-  ActivityIndicator,
+  SafeAreaView,
   Alert,
 } from 'react-native';
-import { TextInput } from 'react-native-paper';
+import {TextInput} from 'react-native-paper';
 import theme from '../utils/theme';
 import ButtonCustom from '../components/ButtonCustom';
 import ImagePicker from 'react-native-image-picker';
 import storage from '@react-native-firebase/storage';
+import Loading from '../components/Loading';
+import PORT from '../utils/port'
 
+// console.log(port)
+const addstore = ({navigation}) => {
 
-
-
-const addstore = ({ navigation }) => {
-
-
-
-
+  
   const [picture, setpicture] = useState(null);
   const [name, setname] = useState('');
   const [price, setprice] = useState('');
   const [size, setsize] = useState('');
   const [infor, setinfor] = useState('');
-  const [text, settext] = useState('')
+  const [text, settext] = useState('');
   const [isLoad, setisLoad] = useState(false);
   const [progressSimple, setprogressSimple] = useState(false);
+  
 
-
-
+  const toggleProgress= () => {
+    progressSimple ? false : true;
+  }
 
   // up ảnh lên firebse stogare
   const _UploadTostorages = async () => {
@@ -54,7 +54,7 @@ const addstore = ({ navigation }) => {
           var progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log('Upload is ' + progress + '% done');
-          setprogressSimple(true)
+          setprogressSimple(true);
         },
         (error) => {
           reject(error.message);
@@ -69,42 +69,42 @@ const addstore = ({ navigation }) => {
       );
     });
     response.then((result) => {
-      Add_store(result)
+      Add_store(result);
     });
   };
 
   // thêm sản từ react
 
   const Add_store = (dataImage) => {
-    console.log(dataImage + " " + "đây là dataImage")
-    fetch('http://10.82.64.103:3000/creat-data', {
+    toggleProgress();
+    console.log(dataImage + ' ' + 'đây là dataImage');
+    fetch(`http://${PORT}/creat-data`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         picture: dataImage,
         name: name,
         price: price,
         size: size,
-        infor: infor
-      })
-    }).then((response) => response.json())
+        infor: infor,
+      }),
+    })
+      .then((response) => response.json())
       .then((json) => {
-        console.log(json)
-        ToastAndroid.show('Thêm sản phẩm thành công', ToastAndroid.SHORT)
-        navigation.navigate('store')
-        return json
+        console.log(json);
+        ToastAndroid.show('Thêm sản phẩm thành công', ToastAndroid.SHORT);
+        navigation.navigate('store');
+        toggleProgress();
+        return json;
       })
       .catch((error) => {
-        console.log(error)
-      })
-  }
-
-
-
-
+        toggleProgress();
+        console.log(error);
+      });
+  };
 
   //  chọn hình trong camera
 
@@ -134,7 +134,8 @@ const addstore = ({ navigation }) => {
   };
 
   return (
-    <ScrollView>
+    <SafeAreaView style={styles.container}>
+      <Loading flag={progressSimple} />
       <View style={styles.container}>
         {/* chọn hình ảnh */}
         {isLoad == false ? (
@@ -142,7 +143,7 @@ const addstore = ({ navigation }) => {
             <Image
               source={require('../assets/images/icons8-image.png')}
               style={styles.image}></Image>
-            <View style={{ position: 'absolute', bottom: 8, right: 0 }}>
+            <View style={{position: 'absolute', bottom: 8, right: 0}}>
               <TouchableOpacity onPress={() => _uploadImage()}>
                 <Image
                   source={require('../assets/images/icons8-camera.png')}
@@ -151,17 +152,17 @@ const addstore = ({ navigation }) => {
             </View>
           </View>
         ) : (
-            <View style={styles.Viewimage}>
-              <Image source={picture} style={styles.image}></Image>
-              <View style={{ position: 'absolute', bottom: 8, right: 0 }}>
-                <TouchableOpacity onPress={() => _uploadImage()}>
-                  <Image
-                    source={require('../assets/images/icons8-camera.png')}
-                    style={styles.icon}></Image>
-                </TouchableOpacity>
-              </View>
+          <View style={styles.Viewimage}>
+            <Image source={picture} style={styles.image}></Image>
+            <View style={{position: 'absolute', bottom: 8, right: 0}}>
+              <TouchableOpacity onPress={() => _uploadImage()}>
+                <Image
+                  source={require('../assets/images/icons8-camera.png')}
+                  style={styles.icon}></Image>
+              </TouchableOpacity>
             </View>
-          )}
+          </View>
+        )}
         {/* Nhập thông tin sản phẩm */}
 
         <View style={styles.Input}>
@@ -169,7 +170,7 @@ const addstore = ({ navigation }) => {
             mode="outlined"
             label="Tên sản phẩm"
             value={name}
-            onChangeText={name => setname(name)}
+            onChangeText={(name) => setname(name)}
             theme={theming}
           />
         </View>
@@ -178,7 +179,7 @@ const addstore = ({ navigation }) => {
             mode="outlined"
             label="Giá sản phẩm"
             value={price}
-            onChangeText={price => setprice(price)}
+            onChangeText={(price) => setprice(price)}
             theme={theming}
           />
         </View>
@@ -187,7 +188,7 @@ const addstore = ({ navigation }) => {
             mode="outlined"
             label="Size sản phẩm"
             value={size}
-            onChangeText={size => setsize(size)}
+            onChangeText={(size) => setsize(size)}
             theme={theming}
             placeholder="Các Size mặc định S M L XXL"
           />
@@ -197,7 +198,7 @@ const addstore = ({ navigation }) => {
             mode="outlined"
             label="Thông tin sản phẩm"
             value={infor}
-            onChangeText={infor => setinfor(infor)}
+            onChangeText={(infor) => setinfor(infor)}
             theme={theming}
             clear
           />
@@ -208,18 +209,17 @@ const addstore = ({ navigation }) => {
             onPress={() => _UploadTostorages()}
             style={styles.button}
             title="Thêm sản phẩm"
-            color={{ color: 'white' }}></ButtonCustom>
+            color={{color: 'white'}}></ButtonCustom>
           <ButtonCustom
             style={styles.button}
             title="Hủy"
-            color={{ color: 'white' }}></ButtonCustom>
+            color={{color: 'white'}}></ButtonCustom>
         </View>
       </View>
       {/* <View visible={progressSimple} style={styles.container}>
       <ActivityIndicator  size="large" color="#00ff00" />
       </View> */}
-
-    </ScrollView>
+    </SafeAreaView>
   );
 };
 

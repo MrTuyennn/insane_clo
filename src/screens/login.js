@@ -14,13 +14,19 @@ import theme from '../utils/theme';
 import {TextInput} from 'react-native-paper';
 import ButtonCustom from '../components/ButtonCustom';
 import Loading from '../components/Loading';
-
+import PORT from '../utils/port'
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
 const login = ({navigation}) => {
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');
   const [loading, setloading] = useState(false);
+  const [progressSimple, setprogressSimple] = useState(false);
+  
+
+  const toggleProgress= () => {
+    progressSimple ? false : true;
+  }
 
   const checkLogin = (name, password) => {
     if (email == '' || password == '') {
@@ -30,8 +36,10 @@ const login = ({navigation}) => {
   };
 
   const loginUser = async () => {
+
     if (checkLogin(email, password)) {
-      const res = await fetch('http://10.82.64.103:3000/singin', {
+      
+      const res = await fetch(`http://${PORT}/singin`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -48,11 +56,12 @@ const login = ({navigation}) => {
       const {data, api_code} = resResult;
       if (api_code === 200) {
         ToastAndroid.show('Login Thành Công', ToastAndroid.SHORT);
+        setprogressSimple(true);
         setloading(true)
+        toggleProgress()
         await AsyncStorage.setItem('id_user',data._id)
         navigation.navigate('homeNavigation')
         console.log(data._id + "id user")
-        
       } else {
         ToastAndroid.show('Err : Email hoặc mật khẩu không chính xác', ToastAndroid.SHORT);
       }
@@ -60,9 +69,8 @@ const login = ({navigation}) => {
   };
 
   return (
-    <>
-      {loading == false ? (
        <SafeAreaView style={styles.container}>
+       <Loading flag={progressSimple} ></Loading>
           <View style={styles.viewImage}>
             <Image source={theme.IMGAE}></Image>
           </View>
@@ -86,6 +94,7 @@ const login = ({navigation}) => {
                 onChangeText={(password) => setpassword(password)}
                 theme={theming}
                 placeholder="Nhập password ..."
+                secureTextEntry
               />
             </View>
             <View style={styles.Viewbutton}>
@@ -104,54 +113,6 @@ const login = ({navigation}) => {
             </View>
           </View>
         </SafeAreaView>
-      ) : (
-        <SafeAreaView style={styles.container}>
-        <Loading />
-          <View style={styles.viewImage}>
-            <Image source={theme.IMGAE}></Image>
-          </View>
-          <View style={styles.bottomView}>
-            <Text style={styles.title}>Log In</Text>
-            <View style={styles.Input}>
-              <TextInput
-                mode="outlined"
-                label="Email"
-                value={email}
-                onChangeText={(email) => setemail(email)}
-                theme={theming}
-                placeholder="Nhập email ..."
-              />
-            </View>
-            <View style={styles.Input}>
-              <TextInput
-                mode="outlined"
-                label="Password"
-                value={password}
-                onChangeText={(password) => setpassword(password)}
-                theme={theming}
-                placeholder="Nhập password ..."
-              />
-            </View>
-            <View style={styles.Viewbutton}>
-              <ButtonCustom
-                color={{color: 'white', fontSize: 20}}
-                style={styles.button}
-                title="Đăng Nhập"
-                onPress={() => loginUser()}></ButtonCustom>
-            </View>
-            <View style={styles.Viewbutton}>
-              <ButtonCustom
-                color={{color: 'white', fontSize: 20}}
-                style={styles.button}
-                title="Đăng Kí"
-                onPress={() => navigation.navigate('register')}></ButtonCustom>
-            </View>
-          </View>
-        
-        </SafeAreaView>
-      )}
-   
-    </>
   );
 };
 

@@ -15,15 +15,19 @@ import BackgroundHeader from '../components/BackgroundHeader';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import theme from '../utils/theme';
 import {Card, FAB} from 'react-native-paper';
-
-// const numColumns = 2;
+import PORT from '../utils/port'
+import Money from 'react-native-vector-icons/MaterialIcons'
+import Star from 'react-native-vector-icons/AntDesign'
+import Cart from 'react-native-vector-icons/Entypo'
 const W = Dimensions.get('window').width
 const Store = ({navigation}) => {
+  
   const [dataProduct, setdataProduct] = useState([]);
   const [loading, setloading] = useState(true);
+  const [page, setPage] = useState(0)
 
   const getData = () => {
-    fetch('http://10.82.64.103:3000/product-limit')
+    fetch(`http://${PORT}/product-limit`)
       .then((response) => response.json())
       .then((result) => {
         console.log(result + ' ' + 'có dữ liệu');
@@ -36,23 +40,36 @@ const Store = ({navigation}) => {
     getData();
   }, []);
 
-  // const onScroll = ({
-  //   nativeEvent:{
-  //     contentOffset:{x},
-  //   },
-  // }) => {
-  //      console.log(x)
-  // }
+  
 
-  const _renderItem = (item) => {
+  const _renderItem = ({item}) => {
     let {styCard, styImage, styprice} = styles;
     return (
       <TouchableWithoutFeedback onPress={() =>navigation.navigate('inforproduct',{item})}>
-      <Card style={styles.styCard}>
+      <Card style={[styles.styCard,
+      // {
+      //   height: page == index ? 100 : 200
+       
+      // }
+      ]}>
         <Image resizeMode='cover' style={styles.styImage} source={{uri: item.picture}}></Image>
-        <Text>{item.name}</Text>
-        <Text style={styles.styprice}>{item.price}</Text>
-        <Text></Text>
+        <Text style={{height:50,marginHorizontal:10}}>{item.name}</Text>
+        <View style={{flexDirection: 'row',marginHorizontal:5}}>
+            <Money name="attach-money" size ={24} color='grey'></Money>
+            <Text style={styles.styprice}>{item.price}</Text>
+            </View>
+            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection:'row',margin:5}}>
+              <Star name='star' size={15} color='red'></Star>
+              <Star name='star' size={15} color='red'></Star>
+              <Star name='star' size={15} color='red'></Star>
+              <Star name='star' size={15} color='grey'></Star>
+              <Star name='star' size={15} color='grey'></Star>
+            </View>
+            <View style={{marginLeft:100,marginBottom:5}}>
+              <Cart name='shopping-cart' size={20} color={theme.COLOR_PRIMARY}></Cart>
+            </View>
+            </View>
       </Card>
       </TouchableWithoutFeedback>
     );
@@ -113,13 +130,20 @@ const Store = ({navigation}) => {
               horizontal={true}
               snapToAlignment='center'
               decelerationRate={'fast'}
-              contentContainerStyle={{marginHorizontal:5}}
+              // contentContainerStyle={{marginHorizontal:5}}
               pagingEnabled
-              snapToInterval ={W - 45}
+              snapToInterval ={W - 100}
               showsHorizontalScrollIndicator={false}
-              // onScroll={onScroll()}
+              // onScroll={
+              //   (e) => {
+              //     const X = e.nativeEvent.contentOffset.x
+              //     const index = Math.round(X /(W - 100))
+              //     // console.log( page +  "=" + index)                
+              //       setPage(index)
+              //     }
+              // }
               renderItem={({item}) => {
-                return _renderItem(item);
+                return _renderItem({item});
               }}
               keyExtractor={(item) => item._id}
               onRefresh={() => getData()}
@@ -185,7 +209,7 @@ const styles = StyleSheet.create({
   },
   Body: {
     marginTop: 70,
-    marginHorizontal: 20,
+    marginHorizontal: 10,
     flexDirection: 'column',
     height:'100%'
   },
@@ -208,9 +232,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    margin: 10,
+    marginHorizontal: 10,
+    marginVertical: 5,
     borderRadius: 10,
-    width:W - 120,
+    width: W - 250,
+    overflow:'hidden',
+    height:250
   },
   styImage: {
     height: 150,

@@ -11,14 +11,14 @@ import {
 } from 'react-native';
 import {Card} from 'react-native-paper';
 import theme from '../utils/theme';
-
+import PORT from '../utils/port'
 const inforproduct = (props, {navigation}) => {
   const {_id, picture, name, size, price, infor} = props.route.params.item;
   console.log(_id, picture, name, size, price);
   console.log('đây là picture' + ' ' + picture);
 
   const deleteProduc = () => {
-    fetch('http://10.82.64.103:3000/delete-data/'+ _id, {
+    fetch(`http://${PORT}/delete-data/`+ _id, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
