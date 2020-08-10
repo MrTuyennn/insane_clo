@@ -116,6 +116,7 @@ const update = ({route, navigation}) => {
             title="Xác nhận cập nhập"
             color={{color: 'white'}}></ButtonCustom>
           <ButtonCustom
+            onPress={() => navigation.navigate('store')}
             style={styles.button}
             title="Hủy"
             color={{color: 'white'}}></ButtonCustom>

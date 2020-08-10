@@ -201,7 +201,7 @@ const register = ({ navigation }) => {
                         value={phone}
                         onChangeText={(phone) => setphone(phone)}
                         theme={theming}
-                        placeholder="Nhập email ..."
+                        placeholder="Nhập số điện thoại ..."
                     />
                 </View>
                 <View style={styles.Viewinput}>

@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Email from 'react-native-vector-icons/MaterialCommunityIcons'
 import Log from 'react-native-vector-icons/AntDesign'
+import Lock from 'react-native-vector-icons/FontAwesome5'
 import {Card} from 'react-native-paper'
 import theme from '../utils/theme'
 import PORT from '../utils/port'
@@ -87,10 +88,15 @@ const profile = ({navigation}) => {
                     {item.name}
                     </Text>
                 </View>
-                <View style={{height:'100%',width:'100%',justifyContent:'center'}}>
-                    <TouchableOpacity onPress={() => navigation.navigate('updateprofile',{item})} style={styles.touchableOpacity}>
+                <View style={{height:100,width:'100%',justifyContent:'center'}}>
+                <View style={{flexDirection:'column'}}>
+                   <TouchableOpacity onPress={() => navigation.navigate('updateprofile',{item})} style={styles.touchableOpacity}>
                       <Icon name='pencil-square-o' size={24} color='white'></Icon>
                     </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('changepass',{item})} style={[styles.touchableOpacity,{marginTop:100}]}>
+                      <Lock name='user-lock' size={20} color='white'></Lock>
+                    </TouchableOpacity>
+                </View>
                 </View>
             </View>
             <View>

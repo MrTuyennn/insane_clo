@@ -125,7 +125,7 @@ const updateprofile = ({route,navigation}) => {
           <ButtonCustom
             onPress={() => updateUser()}
             style={styles.button}
-            title="Thêm sản phẩm"
+            title="Cập nhập người dùng"
             color={{ color: 'white' }}></ButtonCustom>
           <ButtonCustom
             onPress={() => navigation.navigate('profile')}

@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import theme from './utils/theme'
 import Profile from './screens/profile';
 import UpdateProfile from './screens/updateprofile';
+import ChangePass from './screens/changepass'
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,16 @@ export default class Stackprofile extends Component {
               backgroundColor: theme.COLOR_PRIMARY,
             },
             headerTitle: 'Cập nhập thông tin',
+            headerTintColor: 'white',
+          }}></Stack.Screen>
+          <Stack.Screen 
+         name="changepass"
+         component={ChangePass}
+         options={{
+            headerStyle: {
+              backgroundColor: theme.COLOR_PRIMARY,
+            },
+            headerTitle: 'Cập nhập mật khẩu',
             headerTintColor: 'white',
           }}></Stack.Screen>
       </Stack.Navigator>
