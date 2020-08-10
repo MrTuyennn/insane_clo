@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet, Dimensions} from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import Spinner from 'react-native-spinkit';
 
 const height = Dimensions.get('window').height;

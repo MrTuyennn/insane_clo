@@ -1,22 +1,16 @@
-import React, {useEffect, useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-  ToastAndroid,
-  SafeAreaView,
-  Alert,
-} from 'react-native';
-import {TextInput} from 'react-native-paper';
-import theme from '../utils/theme';
-import ButtonCustom from '../components/ButtonCustom';
-import ImagePicker from 'react-native-image-picker';
 import storage from '@react-native-firebase/storage';
+import React, { useState } from 'react';
+import {
+  Image,
+  SafeAreaView, StyleSheet,
+  ToastAndroid, TouchableOpacity, View
+} from 'react-native';
+import ImagePicker from 'react-native-image-picker';
+import { TextInput } from 'react-native-paper';
+import ButtonCustom from '../components/ButtonCustom';
 import Loading from '../components/Loading';
-import PORT from '../utils/port'
+import PORT from '../utils/port';
+import theme from '../utils/theme';
 
 // console.log(port)
 const addstore = ({navigation}) => {

@@ -88,7 +88,7 @@ const profile = ({navigation}) => {
                     {item.name}
                     </Text>
                 </View>
-                <View style={{height:100,width:'100%',justifyContent:'center'}}>
+                <View style={{height:250,width:'100%',justifyContent:'center'}}>
                 <View style={{flexDirection:'column'}}>
                    <TouchableOpacity onPress={() => navigation.navigate('updateprofile',{item})} style={styles.touchableOpacity}>
                       <Icon name='pencil-square-o' size={24} color='white'></Icon>

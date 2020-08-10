@@ -1,26 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  StyleSheet,
-  Text,
-  View,
   Dimensions,
+  FlatList,
+  Image, ScrollView, StyleSheet,
+  Text,
   TextInput,
   TouchableOpacity,
-  TouchableWithoutFeedback,
-  FlatList,
-  ScrollView,
-  Image,
+  TouchableWithoutFeedback, View
 } from 'react-native';
-import BackgroundHeader from '../components/BackgroundHeader';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import theme from '../utils/theme';
-import {Card, FAB} from 'react-native-paper';
-import PORT from '../utils/port';
-import Money from 'react-native-vector-icons/MaterialIcons';
+import { Card } from 'react-native-paper';
 import Star from 'react-native-vector-icons/AntDesign';
 import Cart from 'react-native-vector-icons/Entypo';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import { default as Hot, default as Money } from 'react-native-vector-icons/MaterialIcons';
+import BackgroundHeader from '../components/BackgroundHeader';
 import ViewCustom from '../components/ViewCustom';
-import Hot from 'react-native-vector-icons/MaterialIcons'
+import PORT from '../utils/port';
+import theme from '../utils/theme';
 const W = Dimensions.get('window').width;
 const number = 2;
 

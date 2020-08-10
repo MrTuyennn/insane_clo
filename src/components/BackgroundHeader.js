@@ -1,6 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, View,Dimensions } from 'react-native'
-import {Svg,Circle,Rect, Path} from 'react-native-svg'
+import { Dimensions, StyleSheet, View } from 'react-native'
+import { Path, Svg } from 'react-native-svg'
 import theme from '../utils/theme'
 
 const BackgroundHeader = (style) => {

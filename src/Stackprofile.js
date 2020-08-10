@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import theme from './utils/theme'
+import { createStackNavigator } from '@react-navigation/stack';
+import React, { Component } from 'react';
+import ChangePass from './screens/changepass';
 import Profile from './screens/profile';
 import UpdateProfile from './screens/updateprofile';
-import ChangePass from './screens/changepass'
+import theme from './utils/theme';
 
 const Stack = createStackNavigator();
 

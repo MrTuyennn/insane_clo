@@ -1,9 +1,9 @@
-import React,{useState} from 'react'
-import { StyleSheet, Text, View,Image,TouchableOpacity, ToastAndroid } from 'react-native'
-import {TextInput} from 'react-native-paper';
+import React, { useState } from 'react';
+import { Image, StyleSheet, ToastAndroid, TouchableOpacity, View } from 'react-native';
+import { TextInput } from 'react-native-paper';
+import ButtonCustom from '../components/ButtonCustom';
+import PORT from '../utils/port';
 import theme from '../utils/theme';
-import ButtonCustom from '../components/ButtonCustom'
-import PORT from '../utils/port'
 const updateprofile = ({route,navigation}) => {
 
     const {_id,name,phone,avatar,gmail} =route.params.item
