@@ -1,17 +1,23 @@
 import React from 'react';
 import {
-  StyleSheet,
-  Text,
-  View,
-  Dimensions,
+  Alert, Dimensions,
   Image,
-  TouchableOpacity,
-  Alert,
-  ToastAndroid,
+
+
+
+  ScrollView, StyleSheet,
+  Text,
+
+
+
+
+
+  ToastAndroid, TouchableOpacity, View
 } from 'react-native';
-import {Card} from 'react-native-paper';
+import { default as Heart, default as Star } from 'react-native-vector-icons/AntDesign';
+import PORT from '../utils/port';
 import theme from '../utils/theme';
-import PORT from '../utils/port'
+
 const inforproduct = (props, {navigation}) => {
   const {_id, picture, name, size, price, infor} = props.route.params.item;
   console.log(_id, picture, name, size, price);
@@ -57,27 +63,46 @@ const inforproduct = (props, {navigation}) => {
   };
 
   return (
+    <ScrollView>
     <View style={styles.container}>
       <View style={styles.plus}>
         <View style={styles.viewImage}>
           <Image
-            style={{height: 200, width: 200, borderRadius: 20}}
+            style={{height: '100%', width: '100%', borderBottomLeftRadius: 20,borderBottomRightRadius:20}}
             source={{uri: picture}}
           />
         </View>
-        <Card style={styles.myCard}>
-          <Text style={styles.title}>Tên sản phẩm : {name}</Text>
-        </Card>
+        <View style={{width:Dimensions.get('window').width,flexDirection:'column'}}>
+          <Text style={[styles.title,{fontWeight: 'bold'}]}>{name}</Text>
+          <View style={{width:Dimensions.get('window').width,flexDirection:'row',alignItems:'center'}}>
+            <Text style={[styles.title,{marginHorizontal:10,color:'red',fontWeight: 'bold'}]}>{price} ₫  </Text>
+            <TouchableOpacity style={[styles.button,{marginLeft:95}]}>
+            <Text style={styles.textbutton}>Mua sản phẩm</Text>
+          </TouchableOpacity>
+          </View>
+          <View style={{width:Dimensions.get('window').width,flexDirection:'row',alignItems:'center',margin:10}}>   
+            <Text>_________</Text>
+            <View style={{flexDirection:'row',alignItems:'center',position:'absolute',right: 60}}>
+            <Text>4.5</Text>
+            <Star name="star" size={15} color="black"></Star>
+          </View>
+          </View>
+          <View style={{width:'100%',flexDirection:'row',alignItems:'center',margin:10,height:100}}>
+          <Text style={[styles.title,{fontSize:14,width:350}]}> {infor}</Text>
+          <View style={{height:50,width:100,backgroundColor:theme.COLOR_PRIMARY,borderRadius:20,flexDirection:'row'}}>
+          <View style={{justifyContent: 'center',alignItems: 'center',flexDirection:'row'}}>
+          <Heart style={{margin:10}} name='heart' color='white' size={24}></Heart>
+          <Text  style={{color:'white'}}>|</Text>
+          <Heart  style={{margin:10}} name='shoppingcart' color='white' size={24}></Heart>
+          </View>
+          </View>
+          </View>
+            
+        </View>
+      
 
-        <Card style={styles.myCard}>
-          <Text style={styles.title}>Size : {size}</Text>
-        </Card>
-        <Card style={styles.myCard}>
-          <Text style={styles.title}>Giá sản phẩm : {price}</Text>
-        </Card>
-        <Card style={styles.myCard}>
-          <Text style={styles.title}>Thông tin về sản phẩm : {infor}</Text>
-        </Card>
+        
+        
 
         <View style={styles.ViewButton}>
           <TouchableOpacity
@@ -98,8 +123,9 @@ const inforproduct = (props, {navigation}) => {
             <Text style={styles.textbutton}>Xóa sản phẩm</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </View> 
     </View>
+    </ScrollView>
   );
 };
 
@@ -110,20 +136,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   plus: {
-    margin: 10,
     height: Dimensions.get('window').height,
     alignItems: 'center',
   },
   viewImage: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 200,
-    width: 200,
-    borderRadius: 20,
-  },
-  image: {
-    height: 100,
-    width: 100,
+    height: 550,
+    width: Dimensions.get('window').width,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius:20
   },
   myCard: {
     flexDirection: 'row',
@@ -141,7 +163,8 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   title: {
-    fontSize: 20,
+    fontSize: 25,
+    margin:10,
   },
   ViewButton: {
     flexDirection: 'row',

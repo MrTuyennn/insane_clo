@@ -56,6 +56,7 @@ const changepass = ({navigation, route}) => {
           label="Nhập mật khẩu hiện tại"
           theme={theming}
           placeholder="Nhập mật khẩu hiện tại ..."
+          secureTextEntry
           value={passwordOld}
           onChangeText={(text) => setpasswordOld(text)}
         />
@@ -66,6 +67,7 @@ const changepass = ({navigation, route}) => {
           label="Nhập mật khẩu mới"
           theme={theming}
           placeholder="Nhập mật khẩu mới ..."
+          secureTextEntry
           value={passwordNew}
           onChangeText={(text) => setpasswordNew(text)}
         />
@@ -76,6 +78,7 @@ const changepass = ({navigation, route}) => {
           label="Xác nhận lại mật khẩu"
           theme={theming}
           placeholder="Xác nhận lại mật khẩu ..."
+          secureTextEntry
           value={passwordConfig}
           onChangeText={(text) => setpasswordConfig(text)}
         />

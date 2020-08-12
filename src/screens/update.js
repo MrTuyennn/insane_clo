@@ -52,7 +52,7 @@ const update = ({route, navigation}) => {
       .then((json) => {
         console.log(json);
         ToastAndroid.show('Cập nhập sản phẩm thành công', ToastAndroid.SHORT);
-        navigation.popToTop('store');
+        navigation.navigate('listproduct');
         return json;
       })
       .catch((error) => {

@@ -45,15 +45,12 @@ const updateprofile = ({route,navigation}) => {
           gmail : gmail_update,
         })
       })
-
       const Result_data = await res.json();
-      console.log(Result_data+"bhbhjbjhbj")
+      console.log(Result_data)
       const {api_status,data,api_message} = Result_data
       if(Result_data === 200){
-        console.log(Result_data + " datr ")
-        ToastAndroid.show('data'+" "+ api_message,ToastAndroid.SHORT)
-        navigation.popToTop('profile')
-        
+        ToastAndroid.show('Cập nhập thành công người dùng',ToastAndroid.SHORT)
+        navigation.goBack()  
       }else{
         ToastAndroid.show(' ' + api_message,ToastAndroid.SHORT)
       }
